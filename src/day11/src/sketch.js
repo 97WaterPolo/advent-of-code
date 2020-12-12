@@ -24,8 +24,11 @@ let sketch = (p5) => {
     const margin = gridSize * 0.7;
     for (let row = 0; row < 10; row++) {
       for (let col = 0; col < 10; col++) {
-        if (p5.random() > 0.7) {
+        const randomValue = p5.random();
+        if (randomValue > 0.7) {
           p5.text("·", margin + col * gridSize, margin + row * gridSize);
+        } else if (randomValue > 0.5) {
+          p5.text("🍟", margin + col * gridSize, margin + row * gridSize);
         } else {
           p5.text("⭐", margin + col * gridSize, margin + row * gridSize);
         }
