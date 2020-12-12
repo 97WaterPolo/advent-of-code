@@ -23,11 +23,12 @@ function drawChair(p5, square, col, row) {
   } else if (square === 1) {
     drawGlyph(p5, "🪑", col, row);
   } else if (square === 2) {
-    drawGlyph(p5, "🧙‍♂️", col, row);
+    drawGlyph(p5, "🪑", col, row);
+    drawGlyph(p5, "🧙‍♂️", col, row, true);
   }
 }
 
-function drawGlyph(p5, glyph, col, row) {
+function drawGlyph(p5, glyph, col, row, drawSittingInChair) {
   // because I am tellking p5.js to center text, it is using my coordinates
   // as the CENTER POINT of the text. So if I want to apply a margin,
   // I need to account for the extra space I need to center the text.
@@ -35,7 +36,13 @@ function drawGlyph(p5, glyph, col, row) {
   // It occurs to me now that the value of the text centering is not
   // all that great if I have to go and manually account for it anyway
   const textMargin = margin + 0.5 * gridSize;
-  p5.text(glyph, textMargin + col * gridSize, textMargin + row * gridSize);
+  if (drawSittingInChair && !inputs.useRealData) {
+    p5.textSize(gridSize * 0.6);
+    p5.text(glyph, textMargin + col * gridSize - 5, textMargin + row * gridSize - 15);
+  } else {
+    p5.textSize(gridSize * 0.8);
+    p5.text(glyph, textMargin + col * gridSize, textMargin + row * gridSize);
+  }
 }
 
 function drawStatus(p5, rows, frameNumber, totalFrames, occupiedSeats) {
@@ -99,14 +106,13 @@ function drawBackground(p5, rows) {
 
 function drawGameOfLife(p5, tick) {
   gridSize = inputs.useRealData ? 9 : 60;
-  margin = 40;
+  margin = 80;
   const ticksPerFrame = inputs.useRealData ? 1 : 30;
   const frame = Math.floor(tick / ticksPerFrame);
   if (frame > inputs.frames.length - 1) return;
 
   p5.clear();
 
-  p5.textSize(gridSize * 0.8);
   p5.textAlign(p5.CENTER, p5.CENTER);
   p5.noStroke();
   p5.textStyle(p5.NORMAL);
