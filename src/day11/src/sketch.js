@@ -33,9 +33,9 @@ let sketch = (p5) => {
     p5.textAlign(p5.CENTER, p5.CENTER);
     const gridSize = 60;
     const margin = gridSize * 0.7;
-    for (let row = 0; row < rows.length; row++) {
-      for (let col = 0; col < rows[row].length; col++) {
-        const square = rows[row][col];
+    for (let row = 0; row < inputs.rows.length; row++) {
+      for (let col = 0; col < inputs.rows[row].length; col++) {
+        const square = inputs.rows[row][col];
 
         if (square === 0) {
           p5.text("·", margin + col * gridSize, margin + row * gridSize);
