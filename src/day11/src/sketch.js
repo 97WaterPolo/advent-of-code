@@ -66,6 +66,29 @@ function drawStatus(p5, rows, frameNumber, totalFrames, occupiedSeats) {
   );
 }
 
+function drawBackground(p5, rows) {
+  const barSize = 20;
+  const barsToDraw = rows.length * gridSize;
+  p5.rotate(-45);
+  for (let i = -barsToDraw; i < barsToDraw; i++) {
+    p5.fill(255, 0, 0);
+    if (i % 2 === 0) p5.rect(i * barSize, 0, barSize, height * 3);
+  }
+  p5.rotate(45);
+
+  // fill in the grid with a vanilla white background
+  p5.fill(255);
+
+  p5.stroke(0);
+  p5.strokeWeight(3);
+  p5.rect(
+    0,
+    0,
+    margin / 2 + rows[0].length * gridSize,
+    margin / 2 + rows.length * gridSize
+  );
+}
+
 function drawGameOfLife(p5, tick) {
   gridSize = inputs.useRealData ? 9 : 60;
   margin = gridSize * 0.7;
@@ -74,14 +97,19 @@ function drawGameOfLife(p5, tick) {
   if (frame > inputs.frames.length - 1) return;
 
   p5.clear();
-  p5.noStroke();
-  p5.fill(127);
-  p5.textStyle(p5.NORMAL);
 
   p5.textSize(gridSize * 0.8);
   p5.textAlign(p5.CENTER, p5.CENTER);
+  p5.noStroke();
+  p5.textStyle(p5.NORMAL);
 
   const rows = inputs.frames[frame];
+
+  drawBackground(p5, rows);
+
+  p5.fill(127);
+  p5.noStroke();
+  p5.textStyle(p5.NORMAL);
   for (let row = 0; row < rows.length; row++) {
     for (let col = 0; col < rows[row].length; col++) {
       const square = rows[row][col];
