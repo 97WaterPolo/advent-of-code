@@ -40,9 +40,9 @@ let sketch = (p5) => {
         if (square === 0) {
           p5.text("·", margin + col * gridSize, margin + row * gridSize);
         } else if (square === 1) {
-          p5.text("⭐", margin + col * gridSize, margin + row * gridSize);
+          p5.text("🪑", margin + col * gridSize, margin + row * gridSize);
         } else if (square === 2) {
-          p5.text("🍟", margin + col * gridSize, margin + row * gridSize);
+          p5.text("🧙‍♂️", margin + col * gridSize, margin + row * gridSize);
         }
       }
     }
