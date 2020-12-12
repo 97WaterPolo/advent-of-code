@@ -112,6 +112,7 @@ function drawGameOfLife(p5, tick) {
   if (frame > inputs.frames.length - 1) return;
 
   p5.clear();
+  p5.background(255);
 
   p5.textAlign(p5.CENTER, p5.CENTER);
   p5.noStroke();
