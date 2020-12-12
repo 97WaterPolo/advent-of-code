@@ -13,7 +13,11 @@ let sketch = (p5) => {
     p5.createCanvas(width, height);
   };
 
+  let hasDrawn = false;
   p5.draw = () => {
+    if (hasDrawn) return;
+    hasDrawn = true;
+
     p5.textSize(50);
     p5.textAlign(p5.CENTER, p5.CENTER);
     const gridSize = 60;
