@@ -21,7 +21,7 @@ let sketch = (p5) => {
     p5.textSize(50);
     p5.textAlign(p5.CENTER, p5.CENTER);
     const gridSize = 60;
-    const margin = gridSize / 2;
+    const margin = gridSize * 0.7;
     for (let row = 0; row < 10; row++) {
       for (let col = 0; col < 10; col++) {
         p5.text("⭐", margin + col * gridSize, margin + row * gridSize);
