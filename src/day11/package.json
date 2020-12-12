@@ -1,0 +1,25 @@
+{
+  "name": "home",
+  "scripts": {
+    "test": "jest",
+    "test:debug:windows": "node --inspect-brk node_modules/jest/bin/jest.js --runInBand",
+    "watch": "npm-run-all -p -r watch:browser watch:tests",
+    "watch:browser": "webpack-dev-server --open",
+    "watch:tests": "jest --watch"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "p5": "^1.1.9"
+  }
+}

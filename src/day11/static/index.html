@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <title>livecoding</title>
+    <style>
+      body {
+        margin: 0;
+        font-size: 12px;
+      }
+
+      .global-error {
+        font-family: "JetBrains Mono", "Segoe UI", Tahoma, Geneva, Verdana,
+          sans-serif;
+        color: tomato;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      // feeling needy, might delete later
+      // ...
+      // I feel like I need better visual feedback when I get an error. So BLAM,
+      // this wipes out the page contents and shows that error (only the first one!) to the world.
+      let hasShownError = false;
+      window.onerror = function (message, source, lineno, colno, error) {
+        if (hasShownError) return;
+        hasShownError = true;
+
+        document.body.innerHTML = "";
+
+        let div = document.createElement("pre");
+        div.className = "global-error";
+        div.innerText = error.toString() + "\n at\n" + error.stack;
+        document.body.append(div);
+      };
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"
+      integrity="sha256-ur/YlHMU96MxHEsy3fHGszZHas7NzH4RQlD4tDVvFhw="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
