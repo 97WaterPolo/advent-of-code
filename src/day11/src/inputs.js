@@ -138,5 +138,5 @@ module.exports = function getInputs() {
   const rows = parse(useRealData ? realData : sampleData);
   const frames = simulateFrames(rows);
 
-  return { frames, rows };
+  return { frames, useRealData };
 };
