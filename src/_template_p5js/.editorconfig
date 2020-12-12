@@ -1,0 +1,3 @@
+indent_style = space
+indent_size = 2
+max_line_length = 200 # if I need long lines, then I need long lines. Sure, it might be a red alarm 🚨 if my line goes too long, but hey. Who cares, right? Let's go as wide as we want.
