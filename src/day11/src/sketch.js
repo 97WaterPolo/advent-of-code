@@ -6,7 +6,7 @@ let inputs;
 let width = window.innerWidth;
 let height = window.innerHeight;
 let gridSize = 60;
-let margin = gridSize * 0.7;
+let margin = gridSize * 0.5;
 
 function countOccupiedSeats(rows) {
   let occupiedSeats = 0;
@@ -28,12 +28,19 @@ function drawChair(p5, square, col, row) {
 }
 
 function drawGlyph(p5, glyph, col, row) {
-  p5.text(glyph, margin + col * gridSize, margin + row * gridSize);
+  // because I am tellking p5.js to center text, it is using my coordinates
+  // as the CENTER POINT of the text. So if I want to apply a margin,
+  // I need to account for the extra space I need to center the text.
+  //
+  // It occurs to me now that the value of the text centering is not
+  // all that great if I have to go and manually account for it anyway
+  const textMargin = margin + 0.5 * gridSize;
+  p5.text(glyph, textMargin + col * gridSize, textMargin + row * gridSize);
 }
 
 function drawStatus(p5, rows, frameNumber, totalFrames, occupiedSeats) {
-  const midpointX = (rows[0].length * gridSize) / 2;
-  const midpointY = (0.6 + rows.length) * gridSize;
+  const midpointX = margin + (rows[0].length * gridSize) / 2;
+  const midpointY = margin + (0.6 + rows.length) * gridSize;
   const rectWidth = 400;
   const rectHeight = 100;
 
@@ -69,6 +76,7 @@ function drawStatus(p5, rows, frameNumber, totalFrames, occupiedSeats) {
 function drawBackground(p5, rows) {
   const barSize = 20;
   const barsToDraw = rows.length * gridSize;
+  const padding = margin / 2;
   p5.rotate(-45);
   for (let i = -barsToDraw; i < barsToDraw; i++) {
     p5.fill(255, 0, 0);
@@ -82,16 +90,16 @@ function drawBackground(p5, rows) {
   p5.stroke(0);
   p5.strokeWeight(3);
   p5.rect(
-    0,
-    0,
-    margin / 2 + rows[0].length * gridSize,
-    margin / 2 + rows.length * gridSize
+    margin - padding,
+    margin - padding,
+    margin + rows[0].length * gridSize,
+    margin + rows.length * gridSize
   );
 }
 
 function drawGameOfLife(p5, tick) {
   gridSize = inputs.useRealData ? 9 : 60;
-  margin = gridSize * 0.7;
+  margin = 40;
   const ticksPerFrame = inputs.useRealData ? 1 : 30;
   const frame = Math.floor(tick / ticksPerFrame);
   if (frame > inputs.frames.length - 1) return;
