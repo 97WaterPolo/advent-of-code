@@ -1,3 +1,4 @@
+const realData = require("./realData");
 const sampleData = `L.LL.LL.LL
 LLLLLLL.LL
 L.L.L..L..
@@ -125,9 +126,16 @@ function simulateFrames(rows) {
   return frames;
 }
 
+function convertBooleanValue(urlParams, key) {
+  const value = urlParams.get(key);
+  return String(value).toLocaleLowerCase() === "true";
+}
+
 module.exports = function getInputs() {
   // get stuff from the outside world
-  const rows = parse(sampleData);
+  const urlParams = new URLSearchParams(window.location.search);
+  const useRealData = convertBooleanValue(urlParams, "useRealData");
+  const rows = parse(useRealData ? realData : sampleData);
   const frames = simulateFrames(rows);
 
   return { frames, rows };
