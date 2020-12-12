@@ -14,6 +14,17 @@ let sketch = (p5) => {
   };
 
   let hasDrawn = false;
+  const rows = [];
+  rows.push([1, 0, 1, 1, 0, 1, 1, 0, 1, 1]);
+  rows.push([1, 1, 1, 1, 1, 1, 1, 0, 1, 1]);
+  rows.push([1, 0, 1, 0, 1, 0, 0, 1, 0, 0]);
+  rows.push([1, 1, 1, 1, 0, 1, 1, 0, 1, 1]);
+  rows.push([1, 0, 1, 1, 0, 1, 1, 0, 1, 1]);
+  rows.push([1, 0, 1, 1, 1, 1, 1, 0, 1, 1]);
+  rows.push([0, 0, 1, 0, 1, 0, 0, 0, 0, 0]);
+  rows.push([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+  rows.push([1, 0, 1, 1, 1, 1, 1, 1, 0, 1]);
+  rows.push([1, 0, 1, 1, 1, 1, 1, 0, 1, 1]);
   p5.draw = () => {
     if (hasDrawn) return;
     hasDrawn = true;
@@ -22,15 +33,16 @@ let sketch = (p5) => {
     p5.textAlign(p5.CENTER, p5.CENTER);
     const gridSize = 60;
     const margin = gridSize * 0.7;
-    for (let row = 0; row < 10; row++) {
-      for (let col = 0; col < 10; col++) {
-        const randomValue = p5.random();
-        if (randomValue > 0.7) {
+    for (let row = 0; row < rows.length; row++) {
+      for (let col = 0; col < rows[row].length; col++) {
+        const square = rows[row][col];
+
+        if (square === 0) {
           p5.text("·", margin + col * gridSize, margin + row * gridSize);
-        } else if (randomValue > 0.5) {
-          p5.text("🍟", margin + col * gridSize, margin + row * gridSize);
-        } else {
+        } else if (square === 1) {
           p5.text("⭐", margin + col * gridSize, margin + row * gridSize);
+        } else if (square === 2) {
+          p5.text("🍟", margin + col * gridSize, margin + row * gridSize);
         }
       }
     }
