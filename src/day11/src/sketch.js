@@ -1,4 +1,3 @@
-const p5 = require("p5");
 const p5module = require("p5");
 
 let canvas = null;
@@ -26,6 +25,7 @@ function drawGlyph(p5, glyph, col, row) {
 function drawStatus(p5, frameNumber, totalFrames, occupiedSeats) {
   const midpointX = width / 2;
   const midpointY = height / 2;
+
   p5.text(
     `${frameNumber} of ${totalFrames}\n${occupiedSeats} seats occupied`,
     midpointX,
