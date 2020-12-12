@@ -33,7 +33,7 @@ function drawGlyph(p5, glyph, col, row) {
 
 function drawStatus(p5, rows, frameNumber, totalFrames, occupiedSeats) {
   const midpointX = (rows[0].length * gridSize) / 2;
-  const midpointY = (0.5 + rows.length) * gridSize;
+  const midpointY = (0.6 + rows.length) * gridSize;
   const rectWidth = 400;
   const rectHeight = 100;
 
