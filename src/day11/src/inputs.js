@@ -22,8 +22,30 @@ function parse(input) {
   return rows;
 }
 
+const hardcodedRows = [];
+hardcodedRows.push([2, 0, 1, 1, 0, 1, 1, 0, 1, 1]);
+hardcodedRows.push([1, 2, 1, 1, 1, 1, 1, 0, 1, 1]);
+hardcodedRows.push([1, 0, 1, 0, 1, 0, 0, 1, 0, 0]);
+hardcodedRows.push([1, 1, 1, 1, 0, 1, 1, 0, 1, 1]);
+hardcodedRows.push([1, 0, 1, 1, 0, 1, 1, 0, 1, 1]);
+hardcodedRows.push([1, 0, 1, 1, 2, 1, 1, 0, 1, 1]);
+hardcodedRows.push([0, 0, 1, 0, 1, 0, 0, 0, 0, 0]);
+hardcodedRows.push([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+hardcodedRows.push([1, 0, 1, 1, 1, 1, 1, 1, 0, 1]);
+hardcodedRows.push([1, 0, 1, 1, 1, 1, 1, 0, 1, 1]);
+function simulateFrames(rows) {
+  const frames = [];
+
+  frames.push(rows);
+  frames.push(hardcodedRows);
+
+  return frames;
+}
+
 module.exports = function getInputs() {
   // get stuff from the outside world
   const rows = parse(sampleData);
-  return { rows };
+  const frames = simulateFrames(rows);
+
+  return { frames, rows };
 };

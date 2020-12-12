@@ -13,29 +13,22 @@ let sketch = (p5) => {
     p5.createCanvas(width, height);
   };
 
-  let hasDrawn = false;
-  const rows = [];
-  rows.push([1, 0, 1, 1, 0, 1, 1, 0, 1, 1]);
-  rows.push([1, 1, 1, 1, 1, 1, 1, 0, 1, 1]);
-  rows.push([1, 0, 1, 0, 1, 0, 0, 1, 0, 0]);
-  rows.push([1, 1, 1, 1, 0, 1, 1, 0, 1, 1]);
-  rows.push([1, 0, 1, 1, 0, 1, 1, 0, 1, 1]);
-  rows.push([1, 0, 1, 1, 1, 1, 1, 0, 1, 1]);
-  rows.push([0, 0, 1, 0, 1, 0, 0, 0, 0, 0]);
-  rows.push([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-  rows.push([1, 0, 1, 1, 1, 1, 1, 1, 0, 1]);
-  rows.push([1, 0, 1, 1, 1, 1, 1, 0, 1, 1]);
+  const ticksPerFrame = 60;
+  let tick = 0;
+  let frame = 0;
   p5.draw = () => {
-    if (hasDrawn) return;
-    hasDrawn = true;
+    tick++;
+    const frame = Math.floor(tick / ticksPerFrame);
+    if (frame > inputs.frames.length - 1) return;
+    const rows = inputs.frames[frame];
 
     p5.textSize(50);
     p5.textAlign(p5.CENTER, p5.CENTER);
     const gridSize = 60;
     const margin = gridSize * 0.7;
-    for (let row = 0; row < inputs.rows.length; row++) {
-      for (let col = 0; col < inputs.rows[row].length; col++) {
-        const square = inputs.rows[row][col];
+    for (let row = 0; row < rows.length; row++) {
+      for (let col = 0; col < rows[row].length; col++) {
+        const square = rows[row][col];
 
         if (square === 0) {
           p5.text("·", margin + col * gridSize, margin + row * gridSize);
