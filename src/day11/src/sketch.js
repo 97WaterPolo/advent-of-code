@@ -55,8 +55,10 @@ function drawStatus(p5, rows, frameNumber, totalFrames, occupiedSeats) {
     rectHeight
   );
   p5.fill(255);
-  p5.stroke(2);
-  p5.textSize(25);
+  p5.stroke(0);
+  p5.strokeWeight(3);
+  p5.textSize(35);
+  p5.textStyle(p5.BOLD);
   p5.text(
     `generation ${frameNumber} of ${totalFrames}\n${occupiedSeats} seats occupied`,
     midpointX + 20,
@@ -72,6 +74,9 @@ function drawGameOfLife(p5, tick) {
   if (frame > inputs.frames.length - 1) return;
 
   p5.clear();
+  p5.noStroke();
+  p5.fill(127);
+  p5.textStyle(p5.NORMAL);
 
   p5.textSize(gridSize * 0.8);
   p5.textAlign(p5.CENTER, p5.CENTER);
