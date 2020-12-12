@@ -14,8 +14,15 @@ let sketch = (p5) => {
   };
 
   p5.draw = () => {
-    p5.fill(p5.color(150 + p5.random(100), 150 + p5.random(100), 150 + p5.random(100)));
-    p5.rect(p5.random(width - 50), p5.random(height - 50), p5.random(50), p5.random(50));
+    p5.textSize(50);
+    p5.textAlign(p5.CENTER, p5.CENTER);
+    const gridSize = 60;
+    const margin = gridSize / 2;
+    for (let row = 0; row < 10; row++) {
+      for (let col = 0; col < 10; col++) {
+        p5.text("⭐", margin + col * gridSize, margin + row * gridSize);
+      }
+    }
   };
 };
 
