@@ -48,6 +48,7 @@ let sketch = (p5) => {
 
   let tick = 0;
   p5.draw = () => {
+    p5.clear();
     tick++;
     drawGameOfLife(p5, tick);
   };

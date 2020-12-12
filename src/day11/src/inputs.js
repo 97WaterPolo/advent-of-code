@@ -77,7 +77,7 @@ function isTooCrowded(rows, row, col) {
 function hasNoNeighbors(rows, row, col) {
   const squares = getNeighboringSquares(rows, row, col);
 
-  return squares.every((x) => x === SEAT_EMPTY);
+  return squares.every((x) => x === SEAT_EMPTY || x === SQUARE_EMPTY);
 }
 
 function simulateSquare(rows, row, col) {
@@ -109,13 +109,15 @@ function simulateNextFrame(rows) {
 
 function simulateFrames(rows) {
   const frames = [];
+  let currentFrame = rows;
 
   frames.push(rows);
   while (true) {
-    let frame = simulateNextFrame(rows);
+    let frame = simulateNextFrame(currentFrame);
     if (same(frames[frames.length - 1], frame)) {
       return frames;
     } else {
+      currentFrame = frame;
       frames.push(frame);
     }
   }
