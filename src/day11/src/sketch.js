@@ -15,7 +15,6 @@ let sketch = (p5) => {
 
   const ticksPerFrame = 60;
   let tick = 0;
-  let frame = 0;
   p5.draw = () => {
     tick++;
     const frame = Math.floor(tick / ticksPerFrame);
